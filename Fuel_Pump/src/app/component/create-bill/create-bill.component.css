@@ -1,0 +1,138 @@
+/* Styles for the invoice form */
+
+
+/* Styles for the invoice details section */
+
+
+/* Styles for each form group */
+.form-group {
+  flex: 0 0 50%;
+  padding: 0 10px;
+}
+
+/* Styles for each input group */
+.input-group {
+  display: flex;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+
+/* Styles for labels within input groups */
+.input-group label {
+  flex: 0 0 auto;
+  margin-right: 10px;
+  width: 100px;
+}
+
+/* Styles for input fields within input groups */
+.input-group input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+/* Hover effect for input fields */
+.input-group input:hover {
+  border-color: #999;
+}
+
+/* Subtle box-shadow for input fields */
+.input-group input:focus {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the invoice table */
+.invoice-table {
+  overflow-x: auto; /* Enable horizontal scrolling on small screens */
+}
+
+/* Set a maximum width for the table */
+.invoice-table table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Fix table layout to prevent content from overflowing */
+}
+
+/* Styles for table headers and cells */
+.invoice-table th, .invoice-table td {
+  border: 1px solid #ddd;
+  padding: 10px; /* Add padding for better readability */
+  text-align: left;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflowing content */
+  text-overflow: ellipsis; /* Add ellipsis (...) for truncated text */
+}
+
+/* Background color change on hover for table rows */
+.invoice-table tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* Styles for the total section */
+.total {
+  text-align: right;
+  margin-top: 10px;
+  font-size: 18px; /* Larger font size for total amount */
+  background-color: #e9e9e9; /* Background color */
+  padding: 10px;
+  border-radius: 0 0 5px 5px; /* Maintain consistent border-radius */
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  margin-left: 50% !important;
+}
+
+
+/* Styles for the thank you message */
+.thank-you {
+  font-style: italic;
+  margin-top: 10px;
+  font-size: 16px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  display: flex; /* Using flexbox */
+  justify-content: space-between; /* Aligns items with space between them */
+}
+
+  .btn {
+    /* Neumorphic effect */
+    border: none;
+    background-color:rgb(63,81,181) !important;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px #bfbfbf, -3px -3px 8px #ffffff;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    color: white;
+
+}
+.btn button:hover {
+  /* Button hover effect */
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 15px #bfbfbf, -5px -5px 15px #ffffff;
+}
+
+
+
+/* Media query for small devices */
+@media screen and (max-width: 768px) {
+  /* Display table input fields one above the other */
+  .invoice-table td input {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
+.input-group-addon {
+  margin-right: 10px;
+}

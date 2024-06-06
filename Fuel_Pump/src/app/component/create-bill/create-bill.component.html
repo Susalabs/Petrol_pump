@@ -1,0 +1,154 @@
+<div class="invoice-form">
+  <h3 class="text-center">INVOICE</h3>
+  <hr>
+  <form [formGroup]="billForm" >
+
+
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">Company Name:</span>
+                    <input type="text" id="companyName" formControlName="companyName" placeholder="companyName">
+          <div *ngIf="billForm.get('companyName')?.touched && billForm.get('companyName')?.invalid">
+            <small class="error" *ngIf="billForm.get('companyName')?.errors?.['required']">Name is required.</small>
+<small class="error" *ngIf="billForm.get('companyName')?.errors?.['pattern']">Please enter a valid name (only letters and spaces allowed).</small>
+
+          </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">Mobile No:</span>
+                    <input type="text" id="mobileNo" formControlName="mobileNo" placeholder="Mobile Number" pattern="[0-9]{10}" required>
+                    <div *ngIf="billForm.get('mobileNo')?.touched && billForm.get('mobileNo')?.invalid">
+                      <small class="error" *ngIf="billForm.get('mobileNo')?.errors?.['required']">Mobile Number is required.</small>
+                      <small class="error" *ngIf="billForm.get('mobileNo')?.errors?.['pattern']">Please enter a valid mobile number (10 digits only).</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">Vehicle No:</span>
+                    <input type="text" id="vehicleNo" formControlName="vehicleNo" placeholder="Vehicle Number">
+          <div *ngIf="billForm.get('vehicleNo')?.touched && billForm.get('vehicleNo')?.invalid">
+            <small class="error" *ngIf="billForm.get('vehicleNo')?.errors?.['required']">Vehicle Number is required.</small>
+          </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">Date:</span>
+                    <input type="date" id="invoiceDate" formControlName="invoiceDate">
+                    <div *ngIf="billForm.get('invoiceDate')?.touched && billForm.get('invoiceDate')?.invalid">
+                      <small class="error" *ngIf="billForm.get('invoiceDate')?.errors?.['required']">Invoice Date is required.</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">Credit Card Number:</span>
+                    <input type="text" class="form-control" id="creditCardNo" formControlName="creditCardNo" placeholder="Credit Card Number">
+                    <div *ngIf="billForm.get('creditCardNo')?.touched && billForm.get('creditCardNo')?.invalid">
+                        <small class="error" *ngIf="billForm.get('creditCardNo')?.errors?.['required']">Credit Card Number is required.</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div *ngIf="companies" class="input-group">
+                    <span class="input-group-addon">Available Credit:</span>
+                    <input type="number" class="form-control" id="availableCredit"  placeholder="Available Credit" [value]="companies.availableLimit || 0">
+                    <div *ngIf="billForm.get('availableCredit')?.touched && billForm.get('availableCredit')?.invalid">
+                        <small class="error" *ngIf="billForm.get('availableCredit')?.errors?.['required']">Available Credit is required.</small>
+                    </div>
+                </div>
+
+
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+    <hr>
+    <div class="invoice-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Quantity(Liter)</th>
+            <th>Rate</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Petrol</td>
+            <td><input type="text" formControlName="petrolQuantity"></td>
+            <td><input type="text" formControlName="petrolRate"></td>
+            <td><input type="text" [readonly]="true" [value]="calculateAmount(billForm.get('petrolQuantity')?.value, billForm.get('petrolRate')?.value)"></td>
+          </tr>
+          <tr>
+            <td>Diesel</td>
+            <td><input type="text" formControlName="dieselQuantity"></td>
+            <td><input type="text" formControlName="dieselRate"></td>
+            <td><input type="text" [readonly]="true" [value]="calculateAmount(billForm.get('dieselQuantity')?.value, billForm.get('dieselRate')?.value)"></td>
+          </tr>
+          <tr>
+            <td>Additional Charges</td>
+            <td colspan="2"></td>
+            <td><input type="text" formControlName="additionalChargesAmount"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>SGST</th>
+            <th>CGST</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tax</td>
+            <td><input type="text" [readonly]="true" [value]="calculatePercentage(SGST)" formControlName="SGST"></td>
+            <td><input type="text" [readonly]="true" [value]="calculatePercentage(CGST)" formControlName="CGST"></td>
+            <td><input type="text" [readonly]="true" [value]="taxAmount"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="total">
+      <div class="centered">
+        <label>Total:-</label>
+        <span style="margin-left: 10%;">{{ totalAmount }}</span>
+      </div>
+    </div>
+    <div class="thank-you">
+      <p>Thank you for your business!</p>
+      <div>
+        <button type="button" class="btn" (click)="onSubmit()">Create Invoice</button>
+      </div>
+    </div>
+  </form>
+</div>
+

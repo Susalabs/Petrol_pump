@@ -1,0 +1,86 @@
+
+
+<body>
+
+  <h1 class="text-center">Invoice</h1>
+
+<div class="search-container">
+  <input class="search-input" type="text" placeholder="Search by Company Name" (input)="onSearch($event)">
+  <input class="date-input" type="date" placeholder="Start Date" (change)="onDateChange('start', $event)">
+  <input class="date-input" type="date" placeholder="End Date" (change)="onDateChange('end', $event)">
+</div>
+<div #invoiceContent>
+  <table #invoiceTable>
+
+
+    <thead>
+      <tr>
+        <th>Serial Number</th>
+        <th>Invoice Number</th>
+        <th>Invoice Date</th>
+
+        <th>Company Name</th>
+        <th>Vehical Number</th>
+        <th>Credit CardNumber</th>
+        <th>Diesel Quantity</th>
+        <th>Diesel Rate</th>
+        <th>Diesel Amount</th>
+        <th class="divider">Petrol Quantity</th>
+        <th>Petrol Rate</th>
+        <th>Petrol Amount</th>
+        <th>Total Amount</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoice of  displayedInvoices; let i = index">
+        <td data-label="Serial Number">{{ i + 1 }}</td>
+        <td data-label="Invoice Number">{{ invoice.invoiceNumber }}</td>
+        <td data-label="Invoice Date">{{ invoice.invoiceDate | date }}</td>
+        <td data-label="Company Name">{{ invoice.companyName }}</td>
+        <td data-label="Vehical Number">{{ invoice.vehicleNo }}</td>
+        <td data-label="Credit CardNumber">{{ invoice.creditCardNo }}</td>
+        <td data-label="Diesel Quantity">{{ invoice.dieselQuantity }}</td>
+        <td data-label="Diesel Rate">{{ invoice.dieselRate }}</td>
+        <td data-label="Diesel Amount">{{ invoice.dieselAmount }}</td>
+        <td data-label="Petrol Quantity" class="divider">{{ invoice.petrolQuantity }}</td>
+        <td data-label="Petrol Rate">{{ invoice.petrolRate }}</td>
+        <td data-label="Petrol Amount">{{ invoice.petrolAmount }}</td>
+        <td data-label="Total Amount">{{ invoice.dieselAmount + invoice.petrolAmount }}</td>
+      </tr>
+      <tr>
+        <td colspan="12" class="subtotal">Subtotal</td>
+        <td class="subtotal">{{ getTotalSubtotal() | currency }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <mat-paginator
+  [length]="invoices.length"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[5, 10, 20,100]"
+  (page)="onPageChange($event)">
+</mat-paginator>
+<button (click)="generatePDF()">Generate PDF</button>
+
+</body>
+
+<!-- <div class="container">
+  <div class="header">
+      <img src="../../../assets/pump.jpg" alt="Bharat Petroleum">
+      <div>
+          <h1>Sai Sangam Petroleum</h1>
+          <p>Dealers: Bharat Petroleum Corporation Ltd.</p>
+          <p class="gstin">GSTIN: 29AEYFS9708R1ZE</p>
+      </div>
+  </div>
+  <div class="content">
+      <p>Sy No. 150/4, Near Chandkapur, on NH 65 (9), Towards Hyderabad, Basavakalyan</p>
+      <p>Dist Bidar Karnataka - 585419</p>
+      <p>Cell: 9448488001</p>
+      <p>Email: saisangampetroleum@gmail.com</p>
+  </div>
+  <div class="footer">
+      <p>&copy; Sai Sangam Petroleum. All rights reserved.</p>
+  </div>
+</div> -->

@@ -1,0 +1,10 @@
+
+.upper {
+  display: flex;
+  justify-content: space-between; /* Align items with space in between */
+  align-items: center; /* Vertically center items */
+}
+
+mat-form-field {
+  height: 80px; /* Adjust the height of the search bar */
+}

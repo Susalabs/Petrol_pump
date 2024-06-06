@@ -1,0 +1,123 @@
+   .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #f0c14b;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .header img {
+            width: 80px;
+            margin-right: 20px;
+        }
+        .header h1 {
+            font-size: 24px;
+            color: #0056b3;
+            margin: 0;
+        }
+        .header p {
+            margin: 5px 0;
+        }
+        .header .gstin {
+            font-size: 12px;
+            color: #555;
+        }
+        .content {
+            font-size: 14px;
+            color: #333;
+        }
+        .content p {
+            margin: 5px 0;
+        }
+        .footer {
+            margin-top: 20px;
+            border-top: 2px solid #f0c14b;
+            padding-top: 10px;
+            text-align: center;
+        }
+        .footer p {
+            margin: 5px 0;
+            font-size: 12px;
+        }
+body {
+  font-family: Arial, sans-serif;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  table-layout: fixed; /* Ensures the table doesn't exceed the screen width */
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  word-wrap: break-word; /* Ensures text wraps within cells */
+}
+th {
+  background-color: #f2f2f2;
+}
+.subtotal {
+  font-weight: bold;
+}
+.divider {
+  border-left: 2px solid #000;
+}
+@media screen and (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  th, td {
+    text-align: right;
+  }
+  th {
+    background-color: transparent;
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+  }
+  td {
+    position: relative;
+    padding-left: 50%;
+  }
+  td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-left: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-align: left;
+  }
+}
+/* CSS */
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-input,
+.date-input {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.search-input {
+  flex: 1; /* Take remaining space */
+}
+
+.date-input {
+  width: 150px; /* Adjust based on your preference */
+}

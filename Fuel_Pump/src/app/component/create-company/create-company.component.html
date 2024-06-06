@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Add Company</h1>
+<h1 mat-dialog-title>{{ isEditMode ? 'Edit Company' : 'Add Company' }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="companyForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Company Name</mat-label>
+      <input matInput formControlName="companyName">
+      <mat-error *ngIf="companyForm.get('companyName')?.hasError('required')">
+        Company Name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Company Email</mat-label>
+      <input matInput formControlName="companyEmail">
+      <mat-error *ngIf="companyForm.get('companyEmail')?.hasError('required')">
+        Company Email is required
+      </mat-error>
+      <mat-error *ngIf="companyForm.get('companyEmail')?.hasError('email')">
+        Enter a valid email
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Credit Limit</mat-label>
+      <input matInput type="number" formControlName="creditLimit">
+      <mat-error *ngIf="companyForm.get('creditLimit')?.hasError('required')">
+        Credit Limit is required
+      </mat-error>
+      <mat-error *ngIf="companyForm.get('creditLimit')?.hasError('min')">
+        Credit Limit cannot be negative
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Credit Limit Expiry Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="expiryDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="companyForm.get('expiryDate')?.hasError('required')">
+        Expiry Date is required
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+
+  <!-- Display "Save" button only in edit mode -->
+  <button mat-button *ngIf="isEditMode" [disabled]="companyForm.invalid" cdkFocusInitial (click)="saveCompany()">Save</button>
+  <!-- Display "Add" button in non-edit mode -->
+  <button mat-button *ngIf="!isEditMode" [disabled]="companyForm.invalid" cdkFocusInitial (click)="saveCompany()">Add</button>
+</div>
